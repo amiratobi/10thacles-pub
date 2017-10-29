@@ -77,7 +77,7 @@ class Request
     /**
      * @return void
      */
-    private enableDebugging() {
+    private function enableDebugging() {
         $this->params['debug'] = (bool) config('app.debug');
     }
 
