@@ -7,6 +7,14 @@ body {
   padding-top: 3.5rem;
 }
 
+table.table-hover tr {
+  cursor: pointer;
+}
+
+button:hover  {
+  cursor: pointer;
+}
+
 /*
  * Typography
  */

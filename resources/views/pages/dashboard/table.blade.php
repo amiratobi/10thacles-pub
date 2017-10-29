@@ -1,6 +1,6 @@
 <h2 class="text-center">Summary By Divisions</h2>
 <div class="table-responsive">
-  <table class="table table-sm" id="myTable">
+  <table class="table table-sm " id="myTable">
     <thead class="bg-dark text-light">
       <tr class="">
         <th rowspan="2">#</th>
@@ -9,10 +9,10 @@
         <th class="text-center" colspan="2">Year to Date</th>
       </tr>
       <tr>
-        <th>Total Transaction Count</th>
-        <th>Total Transaction Value</th>
-        <th>Total Transaction Count</th>
-        <th>Total Transaction Value</th>
+        <th>Transaction Count</th>
+        <th>Transaction Value</th>
+        <th>Transaction Count</th>
+        <th>Transaction Value</th>
       </tr>
     </thead>
     <tbody>
