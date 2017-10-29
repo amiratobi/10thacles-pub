@@ -37,46 +37,15 @@ class DashboardController extends Controller
 		return view('pages.dashboard.index', compact('divisions', 'now', 'panelData'));
     }
 
-    public function yesterday()
+    public function displayRange($range)
     {
-		$client = new Client();
-		
-		$response = $client->request('GET', 'http://staging.digitizeme.com.ng/apis/divisions-data.php');
+    	$client = new Client();
+    	$rangeUrl = "http://staging.digitizeme.com.ng/apis/panel-data.php?range=".$range;
+
+    	$response = $client->request('GET', 'http://staging.digitizeme.com.ng/apis/divisions-data.php');
 		$divisions = json_decode($response->getBody());
 
-		$response = $client->request('GET', 'http://staging.digitizeme.com.ng/apis/panel-data.php?range=yesterday');
-		$panelData = json_decode($response->getBody());
-
-		//return $divisions;
-		$now = new Carbon();
-		$now = $now->toFormattedDateString(); 
-		return view('pages.dashboard.index', compact('divisions', 'now', 'panelData'));
-    }
-
-    public function month()
-    {
-		$client = new Client();
-		
-		$response = $client->request('GET', 'http://staging.digitizeme.com.ng/apis/divisions-data.php');
-		$divisions = json_decode($response->getBody());
-
-		$response = $client->request('GET', 'http://staging.digitizeme.com.ng/apis/panel-data.php?range=month');
-		$panelData = json_decode($response->getBody());
-
-		//return $divisions;
-		$now = new Carbon();
-		$now = $now->toFormattedDateString(); 
-		return view('pages.dashboard.index', compact('divisions', 'now', 'panelData'));
-    }
-
-    public function all()
-    {
-		$client = new Client();
-		
-		$response = $client->request('GET', 'http://staging.digitizeme.com.ng/apis/divisions-data.php');
-		$divisions = json_decode($response->getBody());
-
-		$response = $client->request('GET', 'http://staging.digitizeme.com.ng/apis/panel-data.php?range=all');
+		$response = $client->request('GET', $rangeUrl);
 		$panelData = json_decode($response->getBody());
 
 		//return $divisions;

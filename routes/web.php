@@ -13,7 +13,4 @@
 
 Route::get('/', 'DashboardController@index');
 Route::get('dashboard', 'DashboardController@index');
-Route::get('dashboard/today', 'DashboardController@index');
-Route::get('dashboard/yesterday', 'DashboardController@yesterday');
-Route::get('dashboard/month', 'DashboardController@month');
-Route::get('dashboard/all', 'DashboardController@all');
+Route::get('dashboard/{range}', 'DashboardController@displayRange');
