@@ -11,8 +11,16 @@
 |
 */
 
-Route::get('/', 'DashboardController@index');
-Route::get('login', 'LoginController@index');
-Route::get('dashboard', 'DashboardController@index');
-Route::get('dashboard/{range}', 'DashboardController@displayRange');
-Route::get('users', 'UserController@index');
+
+// guest routes ============================
+Route::get('login', 'AuthController@showLoginForm');
+Route::post('login', 'AuthController@login');
+Route::get('logout', 'AuthController@logout');
+
+// protected routes ============================
+Route::middleware('hasToken')->group(function () {
+    Route::get('/', 'DashboardController@index');
+    Route::get('dashboard', 'DashboardController@index');
+    Route::get('dashboard/{range}', 'DashboardController@displayRange');
+    Route::get('users', 'UserController@index');
+});

@@ -10,6 +10,7 @@
         <li class="nav-item active">
           <a class="nav-link" href="#">Admin <i class="fa fa-user-circle-o fa-lg"></i></a>
         </li>
+        <li class="nav-item"><a class="nav-link" href="{{ url('logout') }}">Logout</a></li>
       </ul>
     </div>
   </nav>
