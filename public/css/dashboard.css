@@ -88,3 +88,9 @@ button:hover  {
 .dash-range-link:hover  {
   text-decoration: none;
 }
+
+/* Login Page */
+
+.login-container  {
+  background: white;
+}

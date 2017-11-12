@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'DashboardController@index');
+Route::get('login', 'LoginController@index');
 Route::get('dashboard', 'DashboardController@index');
 Route::get('dashboard/{range}', 'DashboardController@displayRange');
 Route::get('users', 'UserController@index');
