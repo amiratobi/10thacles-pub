@@ -89,8 +89,16 @@ button:hover  {
   text-decoration: none;
 }
 
+<<<<<<< HEAD
 /* Login Page */
 
 .login-container  {
   background: white;
+=======
+.rrr-display-card {
+  position: relative;
+  top: 100px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+>>>>>>> tobs
 }
