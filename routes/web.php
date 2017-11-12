@@ -15,3 +15,8 @@ Route::get('/', 'DashboardController@index');
 Route::get('dashboard', 'DashboardController@index');
 Route::get('dashboard/{range}', 'DashboardController@displayRange');
 Route::get('users', 'UserController@index');
+Route::get('payments', 'PaymentController@index');
+Route::get('payments/all', 'PaymentController@genAllRRR');
+Route::get('payments/{index}', 'PaymentController@genSingleRRR');
+
+

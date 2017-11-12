@@ -88,3 +88,10 @@ button:hover  {
 .dash-range-link:hover  {
   text-decoration: none;
 }
+
+.rrr-display-card {
+  position: relative;
+  top: 100px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
