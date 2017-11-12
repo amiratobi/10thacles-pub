@@ -36,10 +36,14 @@ class AuthController extends Controller
             'client_secret' => config('app.CLIENT_SECRET'),
             'scope' => config('app.CLIENT_SCOPE')
         ];
-        $response = $this->response(
-            $this->client->post($this->auth_url, $params)
-        );
-        $this->setToken($response);
+        try {
+            $response = $this->response(
+                $this->client->post($this->auth_url, $params)
+            );
+            $this->setToken($response);
+        } catch (\Exception $e) {
+            return back()->withError("Unable to login, please check your credentials or try again later");
+        }
         return redirect('/');
     }
 
