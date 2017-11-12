@@ -28,6 +28,10 @@ class AuthController extends Controller
     }
 
     public function login(Request $request) {
+        $this->validate($request, [
+            'username' => 'required',
+            'password' => 'required'
+        ]);
         $params = [
             'username' => $request->get('username'),
             'password' => $request->get('password'),
