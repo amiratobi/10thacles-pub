@@ -94,3 +94,9 @@ button:hover  {
 .login-container  {
   background: white;
 }
+
+/* Add User Page */
+
+.add-user-form-cont {
+  background: #ECF0F1;
+}
