@@ -37,7 +37,7 @@ class Request
                 $response = $this->client->get($url, $params); 
                 break;
             case 'POST': 
-                $params = array_merge($this->params, ['form_params' => $params]);
+                $params = array_merge($this->params, ['json' => $params]);
                 $response = $this->client->post($url, $params); 
                 break;
             default:
@@ -70,7 +70,7 @@ class Request
      * @return void
      */
     private function attachAuthHeader() {
-        $token = cookie('token');
+        $token = \Cookie::get('access_token');
         $this->params['auth'] = [null, $token];
     }
 

@@ -125,6 +125,16 @@ return [
 
     'log_level' => env('APP_LOG_LEVEL', 'debug'),
 
+     /*
+    |--------------------------------------------------------------------------
+    | API Client Params
+    |--------------------------------------------------------------------------
+    |
+    */
+    'CLIENT_ID' => env('CLIENT_ID', 'something'),
+    'CLIENT_SECRET' => env('CLIENT_SECRET', 'something'),
+    'CLIENT_SCOPE' => env('CLIENT_SCOPE', ''),
+
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers
