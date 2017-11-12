@@ -5,7 +5,7 @@
 		<p class="display-4 text-center text-primary">Welcome to 10thacles</p>
 		<hr>
 	        <form>
-	        	<div class="col-10 col-md-8 ml-auto mr-auto pt-3 pb-3">
+	        	<div class="col-12 col-md-8 ml-auto mr-auto pt-3 pb-3">
 				  <div class="form-group">
 				    <label for="exampleInputEmail1">Email address</label>
 				    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
@@ -16,8 +16,8 @@
 				  </div>
 				</div>
 			  <hr>
-				  <div class="col-10 col-md-8 ml-auto mr-auto">
-				  	<button type="submit" class="btn btn-primary pl-4 pr-4 float-left">Login</button>
+				  <div class="col-12 col-md-8 ml-auto mr-auto">
+				  	<button type="submit" class="btn btn-primary pl-3 pr-3 float-left">Login</button>
 				  	<a href="#" class="float-right mt-1 text-secondary">Forgot Password</a>
 				  </div>
 			</form>
