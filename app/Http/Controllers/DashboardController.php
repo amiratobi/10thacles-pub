@@ -35,7 +35,7 @@ class DashboardController extends Controller
             'end' => $params[1]->toIso8601String()
         ];
         $panelData = $statistic->getInvoicingVolume($params);
-
+        
         return view('pages.dashboard.index', compact('divisions', 'now', 'panelData'));
     }
 
