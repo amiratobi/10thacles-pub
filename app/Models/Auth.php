@@ -9,12 +9,21 @@ class Auth extends Model
 {
     protected $auth_url = '/auth/token';
 
-    public function getToken($params) {
+    /**
+     * [getToken description]
+     * @param  array  $params
+     * @return object
+     */
+    public function getToken(array $params = []) {
         return $this->response(
             $this->client->post($this->auth_url, $params)
         );
     }
 
+    /**
+     * [refreshToken description]
+     * @return object
+     */
     public function refreshToken() {
         $params = [
             "grant_type" => "refresh_token",
@@ -28,6 +37,10 @@ class Auth extends Model
         );
     }
 
+    /**
+     * [logout description]
+     * @return void
+     */
     public static function logout() {
         \Cookie::queue(\Cookie::forget('access_token'));
     }

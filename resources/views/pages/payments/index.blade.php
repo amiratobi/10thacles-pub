@@ -9,7 +9,6 @@
 			<thead class="bg-secondary text-light font-weight-bold">
 				<tr>
 					<td>Cashier Name</td>
-					<td>Email</td>
 					<td>Amount Pending</td>
 					<td></td>
 				</tr>
@@ -18,7 +17,6 @@
 				@foreach ($tellers as $teller)
 					<tr>
 						<td>{{ $teller->name }}</td>
-						<td>{{ $teller->email }}</td>
 						<td><del>N</del>{{ number_format($teller->pending_cash, 2) }}</td>
 						<td><a href="/payments/{{ $loop->index }}"><button class="btn btn-sm btn-info">Generate RRR</button></a></td>
 					</tr>

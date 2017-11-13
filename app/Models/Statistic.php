@@ -20,7 +20,7 @@ class Statistic extends Model
         $promises = [
             'cash' => $this->client->getAsync($url, $params + ['invoiceType' => 'offline']),
             'card' => $this->client->getAsync($url, $params + ['invoiceType' => 'remita']),
-            'cash_pending' => $this->client->getAsync($url, $params + ['invoiceType' => 'remita', 'status' => 'pending payment'])
+            'cash_pending' => $this->client->getAsync($url, $params + ['invoiceType' => 'offline', 'status' => 'Pending Payment'])
         ];
         
         return $this->asyncResponse($promises);
