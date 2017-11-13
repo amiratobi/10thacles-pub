@@ -23,4 +23,6 @@ Route::middleware('hasToken')->group(function () {
     Route::get('dashboard', 'DashboardController@index');
     Route::get('dashboard/{range}', 'DashboardController@displayRange');
     Route::get('users', 'UserController@index');
+    Route::get('users/add', 'UserController@create');    
+    Route::get('payments', 'PaymentController@index');
 });

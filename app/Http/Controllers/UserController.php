@@ -20,4 +20,10 @@ class UserController extends Controller
 		$now = $now->toFormattedDateString(); 
 		return view('pages.users.index', compact('users', 'now'));
     }
+
+    public function create()
+    {
+    	return view('pages.users.add');
+    }
+
 }
