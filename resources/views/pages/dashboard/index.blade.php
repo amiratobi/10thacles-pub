@@ -4,10 +4,10 @@
 
   <div class="d-flex flex-row justify-content-center">
     <p>
-      <a href="/dashboard/yesterday" class="dash-range-link" id="range-yesterday">Yesterday </a> |
-      <a href="/dashboard/today" class="dash-range-link" id="range-today"> Today </a> |
-      <a href="/dashboard/month" class="dash-range-link" id="range-month"> This Month </a> |
-      <a href="/dashboard/all" class="dash-range-link" id="range-all"> All Time </a> 
+      <a href="/dashboard?range=yesterday" class="dash-range-link" id="range-yesterday">Yesterday </a> |
+      <a href="/dashboard?range=today" class="dash-range-link" id="range-today"> Today </a> |
+      <a href="/dashboard?range=month" class="dash-range-link" id="range-month"> This Month </a> |
+      <a href="/dashboard?range=all" class="dash-range-link" id="range-all"> All Time </a> 
     </p>
   </div>
 
@@ -21,18 +21,18 @@
 @section ('scripts')
   <script type="text/javascript">
     $(document).ready(function(){
-        var myPath = window.location.pathname;
-        if (myPath == '/dashboard/yesterday')
+        var myPath = window.location.search;
+        if (myPath.indexOf('yesterday') != -1)
         {
           $('.dash-range-link').removeClass('text-dark');
           $('#range-yesterday').addClass('text-dark font-weight-bold');
         }
-        else if (myPath == '/dashboard/month')
+        else if (myPath.indexOf('month') != -1)
         {
           $('.dash-range-link').removeClass('text-dark');
           $('#range-month').addClass('text-dark font-weight-bold');
         }
-        else if (myPath == '/dashboard/all')
+        else if (myPath.indexOf('all') != -1)
         {
           $('.dash-range-link').removeClass('text-dark');
           $('#range-all').addClass('text-dark font-weight-bold');

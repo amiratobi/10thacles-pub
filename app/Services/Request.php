@@ -2,8 +2,10 @@
 
 namespace App\Services;
 
-use GuzzleHttp\Exception\GuzzleException;
-use GuzzleHttp\Client;
+use GuzzleHttp\{
+    Exception\GuzzleException,
+    Client, Promise, Middleware
+};
 
 /**
 * 
@@ -30,11 +32,24 @@ class Request
      * @return [type]
      */
     private function request(string $method, string $url, array $params) {
-
+        // Grab the client's handler instance.
+        $clientHandler = $this->client->getConfig('handler');
+        // Create a middleware that echoes parts of the request.
+        $tapMiddleware = Middleware::tap(function ($request) {
+            // echo $request->getHeaderLine('Content-Type');
+            // // application/json
+            // echo $request->getBody();
+            //  // {"foo":"bar"}
+            // dd($request->getHeaderLine('Authorization'));
+        });
         switch ($method) {
             case 'GET': 
-                $params = array_merge($this->params, ['query' => $params]);
+                $params = array_merge($this->params, ['query' => $params, 'handler' => $tapMiddleware($clientHandler)]);
                 $response = $this->client->get($url, $params); 
+                break;
+            case 'GET_ASYNC': 
+                $params = array_merge($this->params, ['query' => $params, 'handler' => $tapMiddleware($clientHandler)]);
+                $response = $this->client->getAsync($url, $params); 
                 break;
             case 'POST': 
                 $params = array_merge($this->params, ['json' => $params]);
@@ -57,6 +72,10 @@ class Request
         return $this->request('GET', $url, $params);
     }
 
+    public function getAsync(string $url, array $params = []) {
+        return $this->request('GET_ASYNC', $url, $params);
+    }
+
     /**
      * @param  string $url
      * @param  array $params
@@ -71,14 +90,16 @@ class Request
      */
     private function attachAuthHeader() {
         $token = \Cookie::get('access_token');
-        $this->params['auth'] = [null, $token];
+        $this->params['headers'] = [
+            'Authorization' => "Bearer {$token}"
+        ];
     }
 
     /**
      * @return void
      */
     private function enableDebugging() {
-        $this->params['debug'] = (bool) config('app.debug');
+        $this->params['debug'] = (bool) env('GUZZLE_DEBUG');
     }
 
 }

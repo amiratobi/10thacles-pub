@@ -4,8 +4,9 @@
       <div class="d-flex flex-row justify-content-center">
         <div class="d-flex flex-column">
           <div class="p-2"><p class="text-white mb-0">Total Transaction Value</p></div>
-          <div class="p-2"><h1 class="text-white mb-0 mt-0"><del>N</del>{{ number_format(($panelData->cash->value + $panelData->card->value)/1000000, 2) }}M</h1></div>
-          <div class="p-2"><p class="text-white">{{ number_format($panelData->cash->count + $panelData->card->count) }} Transactions</p></div>
+          <div class="p-2"><h1 class="text-white mb-0 mt-0"><del>N</del>
+            {{ number_format(($panelData['cash']->total + $panelData['card']->total)/1000000, 2) }}M</h1></div>
+          <div class="p-2"><p class="text-white">{{ number_format($panelData['cash']->count + $panelData['card']->count) }} Transactions</p></div>
         </div>
       </div>
     </div>
@@ -15,8 +16,8 @@
       <div class="d-flex flex-row justify-content-center">
         <div class="d-flex flex-column">
           <div class="p-2"><p class="text-white mb-0">Total Transaction Value (cash)</p></div>
-          <div class="p-2"><h1 class="text-white mb-0 mt-0"><del>N</del>{{ number_format($panelData->cash->value/1000000, 2) }}M</h1></div>
-          <div class="p-2"><p class="text-white">{{ number_format($panelData->cash->count) }} Transactions</p></div>
+          <div class="p-2"><h1 class="text-white mb-0 mt-0"><del>N</del>{{ number_format($panelData['cash']->total/1000000, 2) }}M</h1></div>
+          <div class="p-2"><p class="text-white">{{ number_format($panelData['cash']->count) }} Transactions</p></div>
         </div>
       </div>
     </div>
@@ -26,8 +27,8 @@
       <div class="d-flex flex-row justify-content-center">
         <div class="d-flex flex-column">
           <div class="p-2"><p class="text-white mb-0">Total Transaction Value (card)</p></div>
-          <div class="p-2"><h1 class="text-white mb-0 mt-0"><del>N</del>{{ number_format($panelData->card->value/1000000, 2) }}M</h1></div>
-          <div class="p-2"><p class="text-white">{{ number_format($panelData->card->count) }} Transactions</p></div>
+          <div class="p-2"><h1 class="text-white mb-0 mt-0"><del>N</del>{{ number_format($panelData['card']->total/1000000, 2) }}M</h1></div>
+          <div class="p-2"><p class="text-white">{{ number_format($panelData['card']->count) }} Transactions</p></div>
         </div>
       </div>
     </div>
@@ -37,8 +38,8 @@
       <div class="d-flex flex-row justify-content-center">
         <div class="d-flex flex-column">
           <div class="p-2"><p class="text-white mb-0">Cash Pending Deposit</p></div>
-          <div class="p-2"><h1 class="text-white mb-0 mt-0"><del>N</del>{{ number_format($panelData->cash->pending->value/1000000, 2) }}M</h1></div>
-          <div class="p-2"><p class="text-white">{{ number_format($panelData->cash->pending->count) }} Transactions</p></div>
+          <div class="p-2"><h1 class="text-white mb-0 mt-0"><del>N</del>{{ number_format($panelData['cash_pending']->total/1000000, 2) }}M</h1></div>
+          <div class="p-2"><p class="text-white">{{ number_format($panelData['cash_pending']->count) }} Transactions</p></div>
         </div>
       </div>
     </div>

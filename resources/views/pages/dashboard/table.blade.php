@@ -5,7 +5,7 @@
       <tr class="">
         <th rowspan="2">#</th>
         <th rowspan="2">Division</th>
-        <th class="text-center" colspan="2">{{$now}}</th>
+        <th class="text-center" colspan="2">{{ now()->toFormattedDateString() }}</th>
         <th class="text-center" colspan="2">Year to Date</th>
       </tr>
       <tr>
@@ -16,14 +16,14 @@
       </tr>
     </thead>
     <tbody>
-      @foreach ($divisions as $division)
+      @foreach ($divisions->today as $division)
         <tr>
           <td>{{ $loop->iteration }}</td>
           <td>{{ $division->name }}</td>
           <td>{{ number_format($division->count) }}</td>
-          <td>{{ number_format($division->value, 2) }}</td>
-          <td>{{ number_format($division->count * 2) }}</td>
-          <td>{{ number_format($division->value * 3,2) }}</td>
+          <td>{{ number_format($division->total, 2) }}</td>
+          <td>{{ number_format($divisions->yearToDate[$loop->iteration - 1]->count) }}</td>
+          <td>{{ number_format($divisions->yearToDate[$loop->iteration - 1]->total, 2) }}</td>
         </tr>
       @endforeach
     </tbody>

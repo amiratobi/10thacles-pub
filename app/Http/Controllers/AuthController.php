@@ -3,22 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Services\Request as Client;
+use App\Models\Auth;
 
 /**
 * Controller Class for Authentication
 */
 class AuthController extends Controller
 {
-    use \App\Services\Response;
-
-    protected $auth_url = '/auth/token';
-
-    function __construct()
-    {
-        $this->client = new Client();
-    }
-
     /**
      * @return Illuminate\View\View
      */
@@ -27,6 +18,11 @@ class AuthController extends Controller
         return view('pages.auth.login');
     }
 
+    /**
+     * [login description]
+     * @param  Request $request
+     * @return redirect()
+     */
     public function login(Request $request) {
         $this->validate($request, [
             'username' => 'required',
@@ -41,9 +37,7 @@ class AuthController extends Controller
             'scope' => config('app.CLIENT_SCOPE')
         ];
         try {
-            $response = $this->response(
-                $this->client->post($this->auth_url, $params)
-            );
+            $response = (new Auth)->getToken($params);
             $this->setToken($response);
         } catch (\Exception $e) {
             return back()->withError("Unable to login, please check your credentials or try again later");
@@ -53,7 +47,7 @@ class AuthController extends Controller
 
     /**
      * [logout description]
-     * @return [type] [description]
+     * @return redirect()
      */
     public function logout() {
         \Cookie::queue(\Cookie::forget('access_token'));
