@@ -33,13 +33,4 @@ Trait Response
         }
         return $data;
     }
-
-    /**
-     * [setToken description]
-     * @param object $response [description]
-     */
-    public function setToken($response) {
-        \Cookie::queue('access_token', $response->access_token, 60 * 24);
-        \Cookie::queue('refresh_token', $response->refresh_token, 60 * 24);
-    }
 }

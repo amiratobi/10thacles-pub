@@ -45,7 +45,7 @@ class DashboardController extends Controller
     	$rangeUrl = "http://staging.digitizeme.com.ng/apis/panel-data.php?range=".$range;
 
     	$response = $client->request('GET', 'http://staging.digitizeme.com.ng/apis/divisions-data.php');
-      $divisions = json_decode($response->getBody());
+        $divisions = json_decode($response->getBody());
 
       $response = $client->request('GET', $rangeUrl);
       $panelData = json_decode($response->getBody());

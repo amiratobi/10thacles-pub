@@ -37,8 +37,9 @@ class AuthController extends Controller
             'scope' => config('app.CLIENT_SCOPE')
         ];
         try {
-            $response = (new Auth)->getToken($params);
-            $this->setToken($response);
+            $auth = new Auth;
+            $response = $auth->getToken($params);
+            $auth->setToken($response);
         } catch (\Exception $e) {
             return back()->withError("Unable to login, please check your credentials or try again later");
         }
@@ -50,7 +51,7 @@ class AuthController extends Controller
      * @return redirect()
      */
     public function logout() {
-        \Cookie::queue(\Cookie::forget('access_token'));
+        Auth::logout();
         return redirect('/login');
     }
 }
