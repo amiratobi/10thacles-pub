@@ -15,7 +15,6 @@ class Statistic extends Model
     }
 
     public function getInvoicingVolume(array $params) {
-        // dd($params);
         $url = "api/invoicing/volume";
         $promises = [
             'cash' => $this->client->getAsync($url, $params + ['invoiceType' => 'offline']),

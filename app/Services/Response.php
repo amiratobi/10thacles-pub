@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use GuzzleHttp\Promise;
+use App\Models\Auth;
 
 /**
  * 
@@ -17,6 +18,14 @@ Trait Response
     }
 
     public function asyncResponse($promises) {
+        try {
+            $results = Promise\unwrap($promises);
+            $results = Promise\settle($promises)->wait();  
+        } catch (\Exception $e) {
+            \Log::error("Error: {$e->getMessage()}");
+            Auth::logout();
+            return redirect("/login")->withError("Unable to process request");
+        }
         $results = Promise\unwrap($promises);
         $results = Promise\settle($promises)->wait();
         $data = [];

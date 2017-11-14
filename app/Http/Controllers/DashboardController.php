@@ -31,8 +31,7 @@ class DashboardController extends Controller
                 $params = [$carbon->today(), $carbon->tomorrow()]; break;
         }
         $params = [
-            'start' => $params[0]->toIso8601String(), 
-            'end' => $params[1]->toIso8601String()
+            'start' => $params[0]->toIso8601String(), 'end' => $params[1]->toIso8601String()
         ];
         $panelData = $statistic->getInvoicingVolume($params);
         

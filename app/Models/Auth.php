@@ -20,6 +20,7 @@ class Auth extends Model
         );
     }
 
+
     /**
      * [refreshToken description]
      * @return object
@@ -37,6 +38,7 @@ class Auth extends Model
         );
     }
 
+
     /**
      * [logout description]
      * @return void
@@ -44,6 +46,7 @@ class Auth extends Model
     public static function logout() {
         \Cookie::queue(\Cookie::forget('access_token'));
     }
+    
 
     /**
      * [setToken description]
