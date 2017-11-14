@@ -11,7 +11,10 @@ use GuzzleHttp\{
     Client, Promise, Middleware
 };
 
-use App\Models\Auth;
+use App\{
+    Models\Auth,
+    Exceptions\TokenRetrievalException
+};
 
 /**
 * 
@@ -58,16 +61,12 @@ class Request
                 default:
                     # code...
                 break;
-            } 
-        }
-        // catch API errors
-        // @todo: better manage for non token related errors
-        catch (\Exception $e) {
-            \Log::error("Guzzle Error: {$e->getMessage()}");
+            }
+        } catch (TokenRetrievalException $e) {
+            report($e);
             Auth::logout();
-            return redirect("/login")->withError("Unable to process request");
         }
-
+        
         return $response;
     }
 
@@ -116,7 +115,7 @@ class Request
     }
 
     /**
-     * returns closure which returns boolean for wether a request
+     * returns closure which returns boolean for whether a request
      * should be retried or not
      * @return Closure [description]
      */
@@ -139,14 +138,15 @@ class Request
             }
 
             if ($response) {
-                // Retry on server errors
+                // Retry once for permission errors
                 if ($response->getStatusCode() == 401 && $retries < 2) {
                     $auth = new Auth;
                     try {
                         $response = $auth->refreshToken();
                         $auth->setToken($response);
-                    } catch (Exception $e) {
-                        \Log::error($e->getMessage());
+                    } catch (\Exception $e) {
+                        \Log::error("Error getting refresh token: {$e->getMessage()}");
+                        throw new TokenRetrievalException();
                     }
                     return true;
                 }

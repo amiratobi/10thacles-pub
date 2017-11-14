@@ -2,7 +2,10 @@
 
 namespace App\Services;
 
-use GuzzleHttp\Promise;
+use GuzzleHttp\{
+    Promise, Psr7\Response as GuzzleResponse
+};
+
 use App\Models\Auth;
 
 /**
@@ -10,10 +13,9 @@ use App\Models\Auth;
  */
 Trait Response
 {
-    public function response($request) {
-        $response = [];
-        if($request->getStatusCode() === 200)
-            $response = json_decode($request->getBody());
+    public function response(GuzzleResponse $response) {
+        if($response->getStatusCode() === 200)
+            $response = json_decode($response->getBody());
         return $response;
     }
 
