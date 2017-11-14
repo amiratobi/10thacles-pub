@@ -44,7 +44,6 @@ class Request
      * @return [type]
      */
     private function request(string $method, string $url, array $params) {
-        $response = [];
         try {
             switch ($method) {
                 case 'GET': 
@@ -66,6 +65,7 @@ class Request
         } catch (TokenRetrievalException $e) {
             report($e);
             Auth::logout();
+            return redirect("/login")->send();
         }
         
         return $response;

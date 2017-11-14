@@ -29,7 +29,8 @@ Route::middleware('hasToken')->group(function () {
     Route::get('payment', 'PaymentController@index')->name('payment.index');
 
     // user routes
-    Route::get('users', 'UserController@index');
-    Route::get('users/add', 'UserController@create');    
+    Route::get('user', 'UserController@index')->name('user.index');
+    Route::post('user', 'UserController@store')->name('user.store'); 
+    Route::get('user/add', 'UserController@create')->name('user.create');    
     
 });

@@ -2,8 +2,7 @@
 
 namespace App\Exceptions;
 
-class TokenRetrievalException extends \Exception
-{
+class TokenRetrievalException extends \Exception {
 
     public function __toString()
     {

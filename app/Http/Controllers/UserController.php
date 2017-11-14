@@ -5,20 +5,34 @@ namespace App\Http\Controllers;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use App\Models\User;
 
 class UserController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-		$client = new Client();
-
-		$response = $client->request('GET', 'http://staging.digitizeme.com.ng/apis/user-data.php');
-		$users = json_decode($response->getBody());
-
-		//return $divisions;
-		$now = new Carbon();
-		$now = $now->toFormattedDateString(); 
+		$users = (new User)->getUsers(
+            (int) $request->get('count', 100)
+        );
+		$now = (new Carbon)->toFormattedDateString(); 
 		return view('pages.users.index', compact('users', 'now'));
+    }
+
+    public function store(Request $request) {
+        $this->validate($request, [
+            'username' => 'required',
+            'password' => 'required,min:5',
+            'email' => 'required'
+        ]);
+        $params = $request->only([
+            'username', 'password', 'firstName', 'lastName', 'email', 'phone', 'domain', 'roles'
+        ]);
+        try {
+            $user = (new User)->storeUser($params);
+        } catch (\Exception $e) {
+            return back()->withError("Unable to add user");
+        }
+        return back()->withMessage("User added!");
     }
 
     public function create()
