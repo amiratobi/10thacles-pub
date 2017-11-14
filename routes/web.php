@@ -19,10 +19,17 @@ Route::get('logout', 'AuthController@logout');
 
 // protected routes ============================
 Route::middleware('hasToken')->group(function () {
-    Route::get('/', 'DashboardController@index');
+    // dashboard routes
+    Route::get('/', 'DashboardController@index')->name('home');
     Route::get('dashboard', 'DashboardController@index');
-    Route::get('dashboard/{range}', 'DashboardController@displayRange');
+    // Route::get('dashboard/{range}', 'DashboardController@displayRange');
+
+    // payment routes
+    Route::get('payment/rrr/{id?}', 'PaymentController@generateRRR')->name('payment.rrr');
+    Route::get('payment', 'PaymentController@index')->name('payment.index');
+
+    // user routes
     Route::get('users', 'UserController@index');
     Route::get('users/add', 'UserController@create');    
-    Route::get('payments', 'PaymentController@index');
+    
 });

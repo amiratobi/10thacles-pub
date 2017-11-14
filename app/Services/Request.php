@@ -44,6 +44,7 @@ class Request
      * @return [type]
      */
     private function request(string $method, string $url, array $params) {
+        $response = [];
         try {
             switch ($method) {
                 case 'GET': 
@@ -139,7 +140,7 @@ class Request
 
             if ($response) {
                 // Retry once for permission errors
-                if ($response->getStatusCode() == 401 && $retries < 2) {
+                if ($response->getStatusCode() == 401 && $retries < 1) {
                     $auth = new Auth;
                     try {
                         $response = $auth->refreshToken();

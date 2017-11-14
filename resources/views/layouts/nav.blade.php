@@ -7,7 +7,7 @@
           <a class="nav-link" href="/reports" id="reports-navlink"><i class="fa fa-line-chart mr-2"></i> Reports</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/payments" id="payments-navlink"><i class="fa fa-money mr-2"></i> Payments</a>
+          <a class="nav-link" href="{{ url(route('payment.index')) }}" id="payments-navlink"><i class="fa fa-money mr-2"></i> Payments</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/collections" id="collections-navlink"><i class="fa fa-tasks mr-2"></i> Collections</a>

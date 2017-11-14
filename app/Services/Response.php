@@ -13,10 +13,11 @@ use App\Models\Auth;
  */
 Trait Response
 {
-    public function response(GuzzleResponse $response) {
-        if($response->getStatusCode() === 200)
-            $response = json_decode($response->getBody());
-        return $response;
+    public function response($response) {
+        $res = [];
+        if($response && $response->getStatusCode() === 200) 
+            $res = json_decode($response->getBody());
+        return $res;
     }
 
     public function asyncResponse($promises) {

@@ -15,11 +15,14 @@ class DashboardController extends Controller
 
     public function index(Request $request)
     {
+        // instantiate needed classes
         $statistic = new Statistic;
-        $carbon = new Carbon();
+        $carbon = new Carbon;
 
+        // retrieve the invoice info per division
         $divisions = $statistic->getInvoicingVolumeDivision();
 
+        // retrieve the invoice volume overview
         switch ($request->get('range')) {
             case 'yesterday': 
                 $params = [$carbon->yesterday()->startOfDay(), $carbon->yesterday()->endOfDay()]; break;
@@ -30,9 +33,7 @@ class DashboardController extends Controller
             default: 
                 $params = [$carbon->today(), $carbon->tomorrow()]; break;
         }
-        $params = [
-            'start' => $params[0]->toIso8601String(), 'end' => $params[1]->toIso8601String()
-        ];
+        $params = ['start' => $params[0]->toIso8601String(), 'end' => $params[1]->toIso8601String()];
         $panelData = $statistic->getInvoicingVolume($params);
         
         return view('pages.dashboard.index', compact('divisions', 'now', 'panelData'));

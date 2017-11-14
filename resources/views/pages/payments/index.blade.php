@@ -3,7 +3,7 @@
 @section ('content')
 	<div class="col-10 ml-auto mr-auto border mt-3">
 		<div class="col text-center">
-			<a href="/payments/all"><button class="btn btn-primary mt-2 mb-2">Generate one RRR for All Cashiers</button></a>
+			<a href="{{ url(route('payment.rrr')) }}"><button class="btn btn-primary mt-2 mb-2">Generate one RRR for All Cashiers</button></a>
 		</div>
 		<table class="table">
 			<thead class="bg-secondary text-light font-weight-bold">
