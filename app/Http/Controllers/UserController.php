@@ -14,6 +14,7 @@ class UserController extends Controller
 		$users = (new User)->getUsers(
             (int) $request->get('count', 100)
         );
+        $users = $users ? $users->items : [];
 		$now = (new Carbon)->toFormattedDateString(); 
 		return view('pages.users.index', compact('users', 'now'));
     }

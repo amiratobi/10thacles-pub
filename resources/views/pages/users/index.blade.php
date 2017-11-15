@@ -5,7 +5,7 @@
 		<div class="row">
 			<div class="col-12">
 				<div class="d-flex flex-row justify-content-center">
-					<a href="/users/add"><button class="btn btn-sm btn-primary">Add User</button></a>
+					<a href="{{ url(route("user.create")) }}"><button class="btn btn-sm btn-primary">Add User</button></a>
 				</div>
 				<div class="d-flex flex-row justify-content-center">
 					<div>
@@ -13,20 +13,20 @@
 							<thead class="bg-dark text-light">
 								<tr>
 									<th>SN</th>
-									<th>Name</th>
-									<th>Email</th>
+									<th>Username</th>
+									<th>Domain</th>
 									<th>Role</th>
-									<th>Date Created</th>
+									{{-- <th>Date Created</th> --}}
 								</tr>
 							</thead>
 							<tbody>
 								@foreach ($users as $user)
 									<tr>
 										<td>{{ $loop->iteration }}</td>
-										<td>{{ $user->name }}</td>
-										<td>{{ $user->email }}</td>
-										<td>{{ $user->role }}</td>
-										<td>{{ $user->created_date }}</td>
+										<td>{{ $user->username }}</td>
+										<td>{{ $user->domain }}</td>
+										<td>{{ $user->roles[0] }}</td>
+										{{-- <td>{{ $user->created_date }}</td> --}}
 									</tr>
 								@endforeach
 							</tbody>
