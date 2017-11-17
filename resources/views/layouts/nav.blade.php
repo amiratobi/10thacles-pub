@@ -10,7 +10,7 @@
           <a class="nav-link" href="{{ url(route('payment.index')) }}" id="payments-navlink"><i class="fa fa-money mr-2"></i> Payments</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/collections" id="collections-navlink"><i class="fa fa-tasks mr-2"></i> Collections</a>
+          <a class="nav-link" href="{{ url(route('collection.index')) }}" id="collections-navlink"><i class="fa fa-tasks mr-2"></i> Pay Items</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{{ url(route('user.index')) }}" id="users-navlink"><i class="fa fa-users mr-2"></i> Users</a>
