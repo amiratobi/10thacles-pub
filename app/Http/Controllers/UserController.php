@@ -17,7 +17,7 @@ class UserController extends Controller
         $roles = cache('user_roles');
         $users = $users ? array_map(function($user) use ($roles) {
             $key = array_search(array_get($user->roles, 0), array_column($roles, '_id'));
-            $user->role = $roles[$key]->name;
+            $user->role = $key ? $roles[$key]->name : "";
             return $user;
         }, $users->items) : [];
 		return view('pages.users.index', compact('users'));
