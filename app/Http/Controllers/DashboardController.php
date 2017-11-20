@@ -15,7 +15,10 @@ class DashboardController extends Controller
 
     public function index(Request $request)
     {
+        // checking permissions
+        // @todo: refactor to roles middleware
         if(!hasClaim('can-generate-invoice')) return redirect("/user");
+        
         // instantiate needed classes
         $statistic = new Statistic;
         $carbon = new Carbon;
@@ -39,21 +42,4 @@ class DashboardController extends Controller
         
         return view('pages.dashboard.index', compact('divisions', 'now', 'panelData'));
     }
-
-    public function displayRange($range)
-    {
-    	$client = new Client();
-    	$rangeUrl = "http://staging.digitizeme.com.ng/apis/panel-data.php?range=".$range;
-
-    	$response = $client->request('GET', 'http://staging.digitizeme.com.ng/apis/divisions-data.php');
-        $divisions = json_decode($response->getBody());
-
-      $response = $client->request('GET', $rangeUrl);
-      $panelData = json_decode($response->getBody());
-
-		//return $divisions;
-      $now = new Carbon();
-      $now = $now->toFormattedDateString(); 
-      return view('pages.dashboard.index', compact('divisions', 'now', 'panelData'));
-  }
 }

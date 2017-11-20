@@ -33,7 +33,6 @@ class Request
             'base_uri' => env('API_URL'),
             'handler' => $handlerStack
         ]);
-        $this->attachAuthHeader();
         $this->enableDebugging();
     }
 
@@ -44,6 +43,10 @@ class Request
      * @return [type]
      */
     private function request(string $method, string $url, array $params) {
+        if(getUser()) {
+            $this->attachAuthHeader();
+        }
+        
         try {
             switch ($method) {
                 case 'GET': 
@@ -64,6 +67,7 @@ class Request
             }
         } catch (TokenRetrievalException $e) {
             report($e);
+            dd("You aren't allowed to view this.");
             (new Auth)->logout();
             return redirect("/login")->send();
         }

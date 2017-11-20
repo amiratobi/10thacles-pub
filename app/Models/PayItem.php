@@ -5,10 +5,10 @@ namespace App\Models;
 /**
 * 
 */
-class Role extends Model
-{   
-    public function getRoles($params) {
-        $url = "api/admin/role";
+class PayItem extends Model
+{
+    public function getItems(array $params = []) {
+        $url = "api/admin/config";
         return $this->response(
             $this->client->get($url, $params)
         );

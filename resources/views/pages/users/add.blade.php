@@ -5,9 +5,12 @@
 		<div class="row">
 			<div class="col mt-2">
 				<h2 class="text-center display-4 text-dark">Add User</h2>
+
 				<div class="col-12 col-sm-8 col-md-6 ml-auto mr-auto border pt-4 pb-4 add-user-form-cont rounded">
 					<p class="text-center text-dark">Enter the user's information below</p>
-					<form>
+					<div class="text-center">@include('partials.alerts')</div>
+					<form method="POST" action="{{ url(route('user.store')) }}">
+						{{ csrf_field() }}
 						<div class="row">
 							<div class="col-12 mt-2 mb-2">
 								<input type="text" class="form-control" placeholder="First name" name="firstName">
@@ -34,11 +37,11 @@
 								<input type="password" class="form-control" name="password" placeholder="password">
 							</div>
 							<div class="col-12 mt-2 mb-2">
-								<select name="role" id="" class="form-control">
-									<option value="" selected>Select Role</option>
-									<option value="Admin">Admin</option>
-									<option value="Biller">Biller</option>
-									<option value="Cashier">Cashier</option>
+								<select name="roles[]" id="" class="form-control" required multiple>
+									<option value="" selected disabled>Select Role</option>
+									@foreach ($roles as $role)
+										<option value="{{$role->_id}}">{{ ucfirst($role->name) }}</option>
+									@endforeach
 								</select>
 							</div>
 						</div>

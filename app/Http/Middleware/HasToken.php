@@ -15,7 +15,7 @@ class HasToken
      */
     public function handle($request, Closure $next)
     {
-        $token = getUser()->access_token;
+        $token = getUser() ? getUser()->access_token : null;
         if(!$token) return redirect('/login')->withError("You need to log in first!");
         return $next($request);
     }

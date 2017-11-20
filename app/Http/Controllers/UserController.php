@@ -26,8 +26,9 @@ class UserController extends Controller
     public function store(Request $request) {
         $this->validate($request, [
             'username' => 'required',
-            'password' => 'required,min:5',
-            'email' => 'required'
+            'password' => 'required|min:5',
+            'email' => 'required',
+            'roles' => 'required'
         ]);
         $params = $request->only([
             'username', 'password', 'firstName', 'lastName', 'email', 'phone', 'domain', 'roles'
@@ -45,9 +46,10 @@ class UserController extends Controller
         // set to large value so as to retrive all roles
         $roles = (new Role)->getRoles(['count' => 100000]);
         if(!empty($roles->items)) {
-            // store on the server for use in other places
-            \Cache::forever('user_roles', $roles->items);  
-        }
+            $roles = $roles->items;
+            // store on the server forever for use in other places
+            \Cache::forever('user_roles', $roles);  
+        } else { $roles = []; }
         
     	return view('pages.users.add', compact('roles'));
     }
