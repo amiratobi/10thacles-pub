@@ -60,7 +60,9 @@ class Auth extends Model
             && $response->refresh_token
         ) {
             $timeToExpire = 60 * 24;
-            \Cookie::queue($this->user_key, json_encode($response), $timeToExpire);
+            $itemsToSave = ['access_token', 'claims']; // can't save all cause if cookie string is too long, 502 occurs :/
+            $user_details = array_only((array) $response, $itemsToSave);
+            \Cookie::queue($this->user_key, json_encode($user_details), $timeToExpire);
         }
     }
 
