@@ -31,6 +31,9 @@ Route::middleware('hasToken')->group(function () {
     // user routes
     Route::get('user', 'UserController@index')->name('user.index');
     Route::post('user', 'UserController@store')->name('user.store'); 
-    Route::get('user/add', 'UserController@create')->name('user.create');    
+    Route::get('user/add', 'UserController@create')->name('user.create');
+    
+    // collections routes
+    Route::get('payitems', 'PayitemController@index')->name('collection.index');
     
 });

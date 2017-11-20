@@ -33,6 +33,14 @@
 							<div class="col-12 mt-2 mb-2">
 								<input type="password" class="form-control" name="password" placeholder="password">
 							</div>
+							<div class="col-12 mt-2 mb-2">
+								<select name="role" id="" class="form-control">
+									<option value="" selected>Select Role</option>
+									<option value="Admin">Admin</option>
+									<option value="Biller">Biller</option>
+									<option value="Cashier">Cashier</option>
+								</select>
+							</div>
 						</div>
 						<hr>
 						<div class="row">
