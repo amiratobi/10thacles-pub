@@ -14,7 +14,7 @@ class UserController extends Controller
     public function index(Request $request)
     {
 		$users = (new User)->getUsers((int) $request->get('count', 100));
-        $roles = cache('user_roles');
+        $roles = cache('user_roles') ?: [];
         $users = $users ? array_map(function($user) use ($roles) {
             $key = array_search(array_get($user->roles, 0), array_column($roles, '_id'));
             $user->role = $key ? $roles[$key]->name : "";
