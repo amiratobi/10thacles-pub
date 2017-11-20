@@ -15,6 +15,7 @@ class DashboardController extends Controller
 
     public function index(Request $request)
     {
+        if(!hasClaim('can-generate-invoice')) return redirect("/user");
         // instantiate needed classes
         $statistic = new Statistic;
         $carbon = new Carbon;

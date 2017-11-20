@@ -24,8 +24,8 @@
 									<tr>
 										<td>{{ $loop->iteration }}</td>
 										<td>{{ $user->username }}</td>
-										<td>{{ $user->domain }}</td>
-										<td>{{ $user->roles[0] }}</td>
+										<td>{{ $user->domain or "" }}</td>
+										<td>{{ $user->role }}</td>
 										{{-- <td>{{ $user->created_date }}</td> --}}
 									</tr>
 								@endforeach

@@ -64,7 +64,7 @@ class Request
             }
         } catch (TokenRetrievalException $e) {
             report($e);
-            Auth::logout();
+            (new Auth)->logout();
             return redirect("/login")->send();
         }
         
@@ -102,10 +102,12 @@ class Request
      * @return void
      */
     private function attachAuthHeader() {
-        $token = \Cookie::get('access_token');
-        $this->params['headers'] = [
-            'Authorization' => "Bearer {$token}"
-        ];
+        $user = json_decode(\Cookie::get('user_details'));
+        if($user) {
+            $this->params['headers'] = [
+                'Authorization' => "Bearer {$user->access_token}"
+            ]; 
+        }
     }
 
     /**

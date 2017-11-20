@@ -8,6 +8,7 @@ namespace App\Models;
 class Auth extends Model
 {
     protected $auth_url = '/auth/token';
+    protected $user_key = 'user_details';
 
     /**
      * [getToken description]
@@ -28,7 +29,7 @@ class Auth extends Model
     public function refreshToken() {
         $params = [
             "grant_type" => "refresh_token",
-            "refresh_token" => \Cookie::get('refresh_token'),
+            "refresh_token" => getUser()->refreshToken,
             'client_id' => config('app.CLIENT_ID'),
             'client_secret' => config('app.CLIENT_SECRET'),
             'scope' => config('app.CLIENT_SCOPE')
@@ -43,8 +44,8 @@ class Auth extends Model
      * [logout description]
      * @return void
      */
-    public static function logout() {
-        \Cookie::queue(\Cookie::forget('access_token'));
+    public function logout() {
+        \Cookie::queue(\Cookie::forget($this->user_key));
     }
     
 
@@ -58,8 +59,17 @@ class Auth extends Model
             && $response->access_token
             && $response->refresh_token
         ) {
-           \Cookie::queue('access_token', $response->access_token, 60 * 24);
-            \Cookie::queue('refresh_token', $response->refresh_token, 60 * 24); 
+            $timeToExpire = 60 * 24;
+            \Cookie::queue($this->user_key, json_encode($response), $timeToExpire);
         }
+    }
+
+    /**
+     * [getUser description]
+     * @return Object [User]
+     */
+    public function getUser() {
+        $user = json_decode(\Cookie::get($this->user_key));
+        return $user;
     }
 }

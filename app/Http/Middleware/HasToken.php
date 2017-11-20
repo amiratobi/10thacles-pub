@@ -15,7 +15,7 @@ class HasToken
      */
     public function handle($request, Closure $next)
     {
-        $token = $request->cookie('access_token');
+        $token = getUser()->access_token;
         if(!$token) return redirect('/login')->withError("You need to log in first!");
         return $next($request);
     }

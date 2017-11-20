@@ -5,18 +5,22 @@ namespace App\Http\Controllers;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
-use App\Models\User;
+use App\Models\{
+    User, Role
+};
 
 class UserController extends Controller
 {
     public function index(Request $request)
     {
-		$users = (new User)->getUsers(
-            (int) $request->get('count', 100)
-        );
-        $users = $users ? $users->items : [];
-		$now = (new Carbon)->toFormattedDateString(); 
-		return view('pages.users.index', compact('users', 'now'));
+		$users = (new User)->getUsers((int) $request->get('count', 100));
+        $roles = cache('user_roles');
+        $users = $users ? array_map(function($user) use ($roles) {
+            $key = array_search(array_get($user->roles, 0), array_column($roles, '_id'));
+            $user->role = $roles[$key]->name;
+            return $user;
+        }, $users->items) : [];
+		return view('pages.users.index', compact('users'));
     }
 
     public function store(Request $request) {
@@ -38,7 +42,14 @@ class UserController extends Controller
 
     public function create()
     {
-    	return view('pages.users.add');
+        // set to large value so as to retrive all roles
+        $roles = (new Role)->getRoles(['count' => 100000]);
+        if(!empty($roles->items)) {
+            // store on the server for use in other places
+            \Cache::forever('user_roles', $roles->items);  
+        }
+        
+    	return view('pages.users.add', compact('roles'));
     }
 
 }
