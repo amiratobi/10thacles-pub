@@ -17,7 +17,7 @@ class DashboardController extends Controller
     {
         // checking permissions
         // @todo: refactor to roles middleware
-        if(!hasClaim('can-generate-invoice')) return redirect("/user");
+        if(!hasClaim('can-manage-own-merchant')) return redirect("/user");
         
         // instantiate needed classes
         $statistic = new Statistic;
