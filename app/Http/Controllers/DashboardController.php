@@ -5,13 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Models\Statistic;
-use GuzzleHttp\Client;
 /**
 * 
 */
 class DashboardController extends Controller
 {
-    use \App\Services\Response;
 
     public function index(Request $request)
     {
