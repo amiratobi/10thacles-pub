@@ -19,6 +19,41 @@ button:hover  {
  * Typography
  */
 
+ .text-dark-grey-1  {
+  color: #263238;
+}
+
+.text-dark-grey-2  {
+  color: #455A64;
+}
+
+.text-dark-grey-3  {
+  color: #90A4AE;
+}
+
+.text-dark-grey-4  {
+  color: #CFD8DC;
+}
+
+/*
+  Colors
+*/
+
+.bg-dark-grey-1  {
+  background: #263238;
+}
+
+.bg-dark-grey-2  {
+  background: #455A64;
+}
+
+.bg-dark-grey-3  {
+  background: #90A4AE;
+}
+
+.bg-dark-grey-4  {
+  background: #CFD8DC;
+}
 
 /*
  * Sidebar
@@ -100,3 +135,4 @@ button:hover  {
 .add-user-form-cont {
   background: #ECF0F1;
 }
+

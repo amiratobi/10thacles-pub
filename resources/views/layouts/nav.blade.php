@@ -14,7 +14,7 @@
         </li>
         @if (hasClaim('can-manage-menus'))
           <li class="nav-item">
-            <a class="nav-link" href="{{ url(route('collection.index')) }}" id="collections-navlink"><i class="fa fa-tasks mr-2"></i> Pay Items</a>
+            <a class="nav-link" href="{{ url(route('payitem.index')) }}" id="payitems-navlink"><i class="fa fa-tasks mr-2"></i> Pay Items</a>
           </li>
         @endif
         @if (hasClaim('can-manage-users'))

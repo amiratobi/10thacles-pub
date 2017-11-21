@@ -6,7 +6,7 @@
 			<div class="col-12 pt-5">
 				<div class="d-flex flex-row">
 					<div class="col-11 mt-2 mb-2">
-						<a href="{{ url(route("user.create")) }}"><button class="btn btn-primary float-right">Add User</button></a>
+						<a href="{{ url(route("user.create")) }}"><button class="btn btn-success float-right"><i class="fa fa-plus"></i> Add User</button></a>
 					</div>
 				</div>
 				<div class="d-flex flex-row justify-content-center">
@@ -27,7 +27,7 @@
 										<td>{{ $loop->iteration }}</td>
 										<td>{{ $user->username }}</td>
 										<td>{{ $user->domain or "" }}</td>
-										<td>{{ $user->role }}</td>
+										<td>{{ $user->roles[0]->name }}</td>
 										{{-- <td>{{ $user->created_date }}</td> --}}
 									</tr>
 								@endforeach

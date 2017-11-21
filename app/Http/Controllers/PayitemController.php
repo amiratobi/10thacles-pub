@@ -14,6 +14,7 @@ class PayitemController extends Controller
         } catch (\Exception $e) {
             $items = [];
         }
+        //return json_encode($items);
         return view('pages.payitems.index', compact('items'));
     }
 
