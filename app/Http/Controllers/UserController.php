@@ -29,34 +29,10 @@ class UserController extends Controller
 		return view('pages.users.index', compact('users'));
     }
 
-    public function store(Request $request) {
-        $this->validate($request, [
-            'username' => 'required',
-            'password' => 'required|min:5',
-            'email' => 'required',
-            'roles' => 'required'
-        ]);
-        $params = $request->only([
-            'username', 'password', 'firstName', 'lastName', 'email', 'phone', 'domain', 'roles'
-        ]);
-        try {
-            $user = (new User)->storeUser($params);
-        } catch (\Exception $e) {
-            return back()->withError("Unable to add user");
-        }
-        return back()->withMessage("User added!");
-    }
 
     public function create()
     {
-        // set to large value so as to retrive all roles
-        $roles = (new Role)->getRoles(['count' => 100000]);
-        if(!empty($roles->items)) {
-            $roles = $roles->items;
-            // store on the server forever for use in other places
-            \Cache::forever('user_roles', $roles);  
-        } else { $roles = []; }
-        
+        $roles = config("constants.roles");
     	return view('pages.users.add', compact('roles'));
     }
 

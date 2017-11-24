@@ -39,9 +39,9 @@
 							<div class="col-12 mt-2 mb-2">
 								<select name="roles[]" id="" class="form-control" required>
 									<option value="" selected disabled>Select Role</option>
-									<option value="ADMINISTRATOR">Admin</option>
-									<option value="CASHIER">Cashier</option>
-									<option value="BILLER">Biller</option>
+									@foreach ($roles as $key => $value)
+										<option value="{{$value}}">{{$key}}</option>
+									@endforeach
 								</select>
 							</div>
 						</div>
