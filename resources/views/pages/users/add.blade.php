@@ -7,8 +7,9 @@
 				<h2 class="text-center display-4 text-dark">Add User</h2>
 
 				<div class="col-12 col-sm-8 col-md-6 ml-auto mr-auto border pt-4 pb-4 add-user-form-cont rounded">
+					<div class="alert-success text-center">@include('partials.alerts')</div>	
+					<br>				
 					<p class="text-center text-dark">Enter the user's information below</p>
-					<div class="text-center">@include('partials.alerts')</div>
 					<form method="POST" action="{{ url(route('user.store')) }}">
 						{{ csrf_field() }}
 						<div class="row">
