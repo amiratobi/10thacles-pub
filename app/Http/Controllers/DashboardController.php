@@ -33,10 +33,11 @@ class DashboardController extends Controller
             case 'all': 
                 $params = [$carbon->today()->startOfCentury(), $carbon->today()->endOfCentury()]; break;
             default: 
-                $params = [$carbon->today(), $carbon->tomorrow()]; break;
+                $params = [$carbon->today(), $carbon->today()->endOfDay()]; break;
         }
         $params = ['start' => $params[0]->toIso8601String(), 'end' => $params[1]->toIso8601String()];
         $panelData = $statistic->getInvoicingVolume($params);
+
         
         return view('pages.dashboard.index', compact('divisions', 'now', 'panelData'));
     }

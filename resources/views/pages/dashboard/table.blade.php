@@ -16,14 +16,19 @@
       </tr>
     </thead>
     <tbody>
-      @foreach ($divisions->today as $division)
+      @foreach ($divisions->yearToDate as $yearToDate)
         <tr>
           <td>{{ $loop->iteration }}</td>
-          <td>{{ $division->name }}</td>
-          <td>{{ number_format($division->count) }}</td>
-          <td>{{ number_format($division->total, 2) }}</td>
-          <td>{{ number_format($divisions->yearToDate[$loop->iteration - 1]->count) }}</td>
-          <td>{{ number_format($divisions->yearToDate[$loop->iteration - 1]->total, 2) }}</td>
+          <td>{{ $yearToDate->name }}</td>
+          @if (isset($divisions->today[$loop->index]))
+            <td>{{ number_format($divisions->today[$loop->index]->count) }}</td>
+            <td>{{ number_format($divisions->today[$loop->index]->total, 2) }}</td>
+          @else
+            <td>-</td>
+            <td>-</td>
+          @endif
+          <td>{{ number_format($yearToDate->count) }}</td>
+          <td>{{ number_format($yearToDate->total, 2) }}</td>
         </tr>
       @endforeach
     </tbody>
