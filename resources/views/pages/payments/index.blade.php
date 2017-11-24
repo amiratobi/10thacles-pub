@@ -14,11 +14,11 @@
 				</tr>
 			</thead>
 			<tbody>
-				@foreach ($tellers as $teller)
+				@foreach ($cashiers as $cashier)
 					<tr>
-						<td>{{ $teller->name }}</td>
-						<td><del>N</del>{{ number_format($teller->pending_cash, 2) }}</td>
-						<td><a href="/payments/{{ $loop->index }}"><button class="btn btn-sm btn-info">Generate RRR</button></a></td>
+						<td>{{ $cashier->cashier->username }}</td>
+						<td><del>N</del>{{ number_format($cashier->total, 2) }}</td>
+						<td><a href="/payment/rrr/{{ $cashier->_id }}"><button class="btn btn-sm btn-info">Generate RRR</button></a></td>
 					</tr>
 				@endforeach
 			</tbody>

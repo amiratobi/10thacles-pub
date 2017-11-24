@@ -25,8 +25,8 @@ Route::middleware('hasToken')->group(function () {
     // Route::get('dashboard/{range}', 'DashboardController@displayRange');
 
     // payment routes
-    Route::get('payment/rrr/{id?}', 'PaymentController@generateRRR')->name('payment.rrr');
     Route::get('payment', 'PaymentController@index')->name('payment.index');
+    Route::get('payment/rrr/{id?}', 'PaymentController@generateRRR')->name('payment.rrr');
 
     // user routes
     Route::get('user', 'UserController@index')->name('user.index');
