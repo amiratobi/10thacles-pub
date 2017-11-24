@@ -37,11 +37,11 @@
 								<input type="password" class="form-control" name="password" placeholder="password">
 							</div>
 							<div class="col-12 mt-2 mb-2">
-								<select name="roles[]" id="" class="form-control" required multiple>
+								<select name="roles[]" id="" class="form-control" required>
 									<option value="" selected disabled>Select Role</option>
-									@foreach ($roles as $role)
-										<option value="{{$role->_id}}">{{ ucfirst($role->name) }}</option>
-									@endforeach
+									<option value="ADMIN">Admin</option>
+									<option value="CASHIER">Cashier</option>
+									<option value="BILLER">Biller</option>
 								</select>
 							</div>
 						</div>

@@ -16,7 +16,7 @@
 								<tr>
 									<th>SN</th>
 									<th>Username</th>
-									<th>Domain</th>
+									<th>Organization</th>
 									<th>Role</th>
 									{{-- <th>Date Created</th> --}}
 								</tr>
