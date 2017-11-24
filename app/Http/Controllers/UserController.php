@@ -39,6 +39,7 @@ class UserController extends Controller
         $params = $request->only([
             'username', 'password', 'firstName', 'lastName', 'email', 'phone', 'domain', 'roles'
         ]);
+        return $params;
         try {
             $user = (new User)->storeUser($params);
         } catch (\Exception $e) {

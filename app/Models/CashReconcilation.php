@@ -20,4 +20,15 @@ class CashReconcilation extends Model
             $this->client->post($url, ['cashiers' => $cashiers])
         );
     }
+
+    public function getCashierName($id)
+    {
+        $cashiers = $this->getCashPerCashier();
+        foreach($cashiers as $cashier)
+        {
+            if($id ==  $cashier->_id)
+            return $cashier->cashier->username;
+        }
+        return null;
+    }
 }
